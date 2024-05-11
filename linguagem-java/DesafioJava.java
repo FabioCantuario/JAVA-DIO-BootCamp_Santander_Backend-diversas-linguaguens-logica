@@ -16,7 +16,7 @@ public class DesafioJava {
         beneficio = sc.nextDouble();
         sc.nextLine();    
         
-        System.out.println("O valor de pagamento é: R$ " + CalcularValores(salarioBruto,beneficio));
+        System.out.printf("O valor de pagamento recebido é: R$ %.2f ", CalcularValores(salarioBruto,beneficio));
         
 
         sc.close();
@@ -24,26 +24,22 @@ public class DesafioJava {
 
     static double CalcularValores(double salarioBruto, double benefico){
 
-        double txImposto;
-        double salarioLiquido = 0.0;
+        double txImposto = 0.0;
 
         if(salarioBruto >= 0.0 && salarioBruto <= 1100){
             txImposto = salarioBruto * 0.05;
-            salarioBruto += txImposto;
-            salarioLiquido = salarioBruto + benefico;
+            salarioBruto += benefico - txImposto;
         } else if(salarioBruto >= 1100.01 && salarioBruto <= 2500){
             txImposto = salarioBruto * 0.1;
-            salarioBruto += txImposto;
-            salarioLiquido = salarioBruto + benefico;
+            salarioBruto += benefico - txImposto;
         } else if(salarioBruto < 0.0){
             System.out.println("Valor inexistente!!");
         } else{
             txImposto = salarioBruto * 0.15;
-            salarioBruto += txImposto;
-            salarioLiquido = salarioBruto + benefico;
+            salarioBruto += benefico - txImposto;
         }
 
-        return salarioLiquido;
+        return salarioBruto;
 
     }
 
